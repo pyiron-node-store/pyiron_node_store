@@ -14,4 +14,5 @@ for node in entry_points():
 
 print(registered_nodes)
 
-sys.modules.update(registered_nodes)
+for key, value in registered_nodes.items():
+    sys.modules[key] = value.load()
