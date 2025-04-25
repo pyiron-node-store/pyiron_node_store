@@ -1,0 +1,103 @@
+[build-system]
+requires = [
+    "versioneer[toml]==0.29",
+    "setuptools",
+    "pyiron_workflow",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyiron_node_store"
+description = "pyiron_node_store - Nodes for the pyiron_workflow environment."
+readme = "docs/README.md"
+keywords = [ "pyiron",]
+requires-python = ">=3.10, <3.13"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Topic :: Scientific/Engineering",
+    "License :: OSI Approved :: BSD License",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "pyiron_workflow==0.12.3",
+]
+dynamic = [ "version",]
+authors = [
+    { name = "Niklas Siemer", email = "n.siemer@mpie.de" },
+]
+
+[project.license]
+file = "LICENSE"
+
+[project.urls]
+Homepage = "https://github.com/pyiron/pyiron_workflow"
+Documentation = "https://pyiron-workflow.readthedocs.io"
+Repository = "https://github.com/pyiron/pyiron_workflow"
+
+[tool.versioneer]
+VCS = "git"
+style = "pep440-pre"
+versionfile_source = "pyiron_node_store/_version.py"
+parentdir_prefix = "pyiron_node_store"
+tag_prefix = "pyiron_node_store-"
+
+[tool.setuptools.packages.find]
+include = [ "pyiron_node_store*",]
+
+[tool.setuptools.dynamic.version]
+attr = "pyiron_node_store.__version__"
+
+[tool.ruff]
+exclude = ["docs", "notebooks", "_version.py"]
+
+[tool.ruff.lint]
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # flake8-comprehensions
+    "C4",
+    # eradicate
+    "ERA",
+    # pylint
+    "PL",
+]
+ignore = [
+    # ignore line-length violations
+    "E501",
+    # Too many arguments in function definition
+    "PLR0913",
+    # Magic value used in comparison
+    "PLR2004",
+    # Import alias does not rename original package
+    "PLC0414",
+    # Too many branches
+    "PLR0912",
+    # Too many statements
+    "PLR0915",
+    # Too many return statements
+    "PLR0911",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]  # Ignore unused imports in init files -- we specify APIs this way
+
+[tool.black]
+extend-exclude = '''
+(
+  ^/docs
+)
+'''

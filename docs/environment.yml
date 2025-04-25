@@ -1,0 +1,12 @@
+channels:
+- conda-forge
+dependencies:
+- ipykernel
+- myst-parser
+- nbsphinx
+- sphinx-gallery
+- sphinx-rtd-theme
+- versioneer
+- coveralls
+- coverage
+- pyiron_workflow =0.12.3
