@@ -50,9 +50,9 @@ def get_config() -> VersioneerConfig:
     cfg = VersioneerConfig()
     cfg.VCS = "git"
     cfg.style = "pep440-pre"
-    cfg.tag_prefix = "pyiron_workflow-"
-    cfg.parentdir_prefix = "pyiron_workflow"
-    cfg.versionfile_source = "pyiron_workflow/_version.py"
+    cfg.tag_prefix = "pyiron_node_store-"
+    cfg.parentdir_prefix = "pyiron_node_store"
+    cfg.versionfile_source = "pyiron_node_store/_version.py"
     cfg.verbose = False
     return cfg
 

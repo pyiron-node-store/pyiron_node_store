@@ -52,7 +52,7 @@ include = [ "pyiron_node_store*",]
 attr = "pyiron_node_store.__version__"
 
 [tool.ruff]
-exclude = ["docs", "notebooks", "_version.py"]
+exclude = ["docs", "notebooks", "setup.py", "_version.py"]
 
 [tool.ruff.lint]
 select = [
