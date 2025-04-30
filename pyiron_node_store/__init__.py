@@ -1,8 +1,7 @@
-from importlib.metadata import entry_points
-import sys
-import types
+from importlib.metadata import entry_points as _entry_points
+import sys as _sys
+import types as _types
 from ._version import get_versions as _get_versions
-from warnings import warn
 
 # might be very interesting to get tests at some point:
 # https://stackoverflow.com/questions/40514205/how-to-dynamically-add-and-load-entry-points
@@ -15,13 +14,13 @@ del _get_versions
 _MODULE_NAME = "pyiron_node_store"
 _DEFAULT_SUB_MODULE_NAME = "nodes"
 
-nodes = types.ModuleType(_DEFAULT_SUB_MODULE_NAME)
+nodes = _types.ModuleType(_DEFAULT_SUB_MODULE_NAME)
 _SUB_MODULES = {_DEFAULT_SUB_MODULE_NAME: nodes}
 
 
 def _find_entry_points():
     registered_nodes = {}
-    for node in entry_points():
+    for node in _entry_points():
         if node.group.startswith(_MODULE_NAME):
             module = tuple(node.group.split(".") + [node.name])
             if module in registered_nodes:
@@ -51,7 +50,7 @@ def _gen_sub_module(module_path_list):
     if _parent_mod_path not in _SUB_MODULES and _parent_mod_path != "":
         _gen_sub_module(module_path_list[:-1])
 
-    _mod = types.ModuleType(_new_mod_name)
+    _mod = _types.ModuleType(_new_mod_name)
     if _parent_mod_path == "":
         globals()[_new_mod_name] = _mod
     else:
