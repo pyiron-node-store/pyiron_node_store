@@ -36,8 +36,10 @@ def _find_entry_points():
 def _gen_name(module_path_list):
     if len(module_path_list) == 2:
         if module_path_list[0] != _MODULE_NAME:
-            raise ValueError(f"Unintended use, module path must start with {_MODULE_NAME},"
-                             f"but got {module_path_list}.")
+            raise ValueError(
+                f"Unintended use, module path must start with {_MODULE_NAME},"
+                f"but got {module_path_list}."
+            )
         return _DEFAULT_SUB_MODULE_NAME, module_path_list[1]
     else:
         return ".".join(module_path_list[1:-1]), module_path_list[-1]
@@ -56,6 +58,23 @@ def _gen_sub_module(module_path_list):
     else:
         setattr(_SUB_MODULES[_parent_mod_path], _new_mod_name, _mod)
     _SUB_MODULES[_full_name] = _mod
+
+
+def get_pyiron_nodes_dict():
+    result = {}
+    for path, module in _SUB_MODULES.items():
+        work = result
+        work_before = result
+        key = None
+        for key in path.split("."):
+            work_before = work
+            if key in work:
+                work = work[key]
+            else:
+                work[key] = {}
+                work = work[key]
+        work_before[key] = module
+    return result
 
 
 for _module_path_list, _entry_point in _find_entry_points().items():
