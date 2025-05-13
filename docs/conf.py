@@ -12,7 +12,6 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys
 import os
 import shutil
 import subprocess
@@ -48,6 +47,11 @@ extensions = [
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
+nbsphinx_thumbnails = {
+    'source/notebooks/example': "_static/pyiron-logo-dark.png",
+}
+
+# The suffix of source filenames.
 # The suffix of source filenames.
 source_suffix = {
     '.rst': 'restructuredtext',
@@ -61,8 +65,8 @@ source_suffix = {
 master_doc = 'index'
 
 # General information about the project.
-project = u'pyiron_workflow'
-copyright = u'2021, Max-Planck-Institut für Eisenforschung GmbH - Computational Materials Design (CM) Department ' \
+project = u'pyiron_node_store'
+copyright = u'2024, Max-Planck-Institut für Nachhaltige Materialien GmbH - Computational Materials Design (CM) Department ' \
             u'All rights reserved'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -136,11 +140,14 @@ modindex_common_prefix = ['vasp.', 'base.', 'lammps.',
 #    raise ImportError("You need to install bootstrap: pip install sphinx_bootstrap_theme")
 #    html_theme = 'default'
 
-try:
-   import sphinx_rtd_theme
-   html_theme = 'sphinx_rtd_theme'
-except ImportError:
-   html_theme = 'default'
+import importlib.util
+
+if importlib.util.find_spec("sphinx_rtd_theme") is not None:
+    # sphinx_rtd_theme is available
+    html_theme = "sphinx_rtd_theme"
+else:
+    # fallback theme
+    html_theme = "alabaster"
 
 
 # Theme options are theme-specific and customize the look and feel of a theme
@@ -239,8 +246,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'pyiron_workflow.tex', u'pyiron_workflow Documentation',
-   u'Max-Planck-Institut für Eisenforschung GmbH - Computational Materials Design (CM) Department', 'manual'),
+  ('index', 'pyiron_node_store.tex', u'pyiron_node_store Documentation',
+   u'Max-Planck-Institut für Nachhaltige Materialien GmbH - Computational Materials Design (CM) Department', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -270,9 +277,9 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index',
-     'pyiron_workflow',
-     u'pyiron_workflow Documentation',
-     [u'Max-Planck-Institut für Eisenforschung GmbH - Computational Materials Design (CM) Department'], 1)
+     'pyiron_node_store',
+     u'pyiron_node_store Documentation',
+     [u'Max-Planck-Institut für Nachhaltige Materialien GmbH - Computational Materials Design (CM) Department'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -286,11 +293,11 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index',
-   'pyiron_workflow',
-   u'pyiron_workflow Documentation',
-   u'Max-Planck-Institut für Eisenforschung GmbH - Computational Materials Design (CM) Department',
-   'pyiron_workflow',
-   'Graph-based workflow management.',
+   'pyiron_node_store',
+   u'pyiron_node_store Documentation',
+   u'Max-Planck-Institut für Nachhaltige Materialien GmbH - Computational Materials Design (CM) Department',
+   'pyiron_node_store',
+   'One line description of project.',
    'Miscellaneous'),
 ]
 
@@ -306,7 +313,7 @@ texinfo_documents = [
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 # texinfo_no_detailmenu = False
 
-main(['-e', '-o', 'apidoc', '../pyiron_workflow', '--force'])
+main(['-e', '-o', 'apidoc', '../pyiron_node_store', '--force'])
 
 curdir = os.path.dirname(os.path.abspath(__file__))
 if os.path.exists(os.path.join(curdir, 'source/notebooks')):

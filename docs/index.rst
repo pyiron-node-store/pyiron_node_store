@@ -1,5 +1,4 @@
-
-.. pyiron_workflow documentation master file
+.. pyiron_node_store documentation master file
 
 .. _index:
 
