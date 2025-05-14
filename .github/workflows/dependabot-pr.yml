@@ -8,3 +8,4 @@ jobs:
   pyiron:
     uses: pyiron/actions/.github/workflows/dependabot-pr.yml@actions-4.0.2
     secrets: inherit
+

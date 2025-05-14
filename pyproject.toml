@@ -13,7 +13,7 @@ readme = "docs/README.md"
 keywords = [ "pyiron",]
 requires-python = ">=3.10, <3.13"
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 3 - Alpha",
     "Topic :: Scientific/Engineering",
     "License :: OSI Approved :: BSD License",
     "Intended Audience :: Science/Research",
@@ -34,9 +34,9 @@ authors = [
 file = "LICENSE"
 
 [project.urls]
-Homepage = "https://github.com/pyiron/pyiron_workflow"
-Documentation = "https://pyiron-workflow.readthedocs.io"
-Repository = "https://github.com/pyiron/pyiron_workflow"
+Homepage = "https://pyiron.org/"
+Documentation = "https://pyiron_node_store.readthedocs.io"
+Repository = "https://github.com/pyiron/pyiron_node_store"
 
 [tool.versioneer]
 VCS = "git"
@@ -68,29 +68,8 @@ select = [
     "SIM",
     # isort
     "I",
-    # flake8-comprehensions
-    "C4",
-    # eradicate
-    "ERA",
-    # pylint
-    "PL",
 ]
-ignore = [
-    # ignore line-length violations
-    "E501",
-    # Too many arguments in function definition
-    "PLR0913",
-    # Magic value used in comparison
-    "PLR2004",
-    # Import alias does not rename original package
-    "PLC0414",
-    # Too many branches
-    "PLR0912",
-    # Too many statements
-    "PLR0915",
-    # Too many return statements
-    "PLR0911",
-]
+ignore = ["E501"] #ignore line-length violations
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]  # Ignore unused imports in init files -- we specify APIs this way

@@ -1,6 +1,6 @@
 # This runs jobs which pyiron modules should run on pushes or PRs to main
 
-name: Push-main-Pull-all
+name: Push-Pull
 
 on:
   push:
@@ -10,7 +10,8 @@ on:
 jobs:
   pyiron:
     uses: pyiron/actions/.github/workflows/push-pull.yml@actions-4.0.2
-    secrets: inherit
+    secrets:
+       DEPENDABOT_WORKFLOW_TOKEN: ${{ secrets.DEPENDABOT_WORKFLOW_TOKEN }}
     with:
       docs-env-files: .ci_support/environment.yml
       notebooks-env-files: .ci_support/environment.yml
@@ -50,3 +51,4 @@ jobs:
       - uses: astral-sh/ruff-action@v3
         with:
           args: check --select I --fix --diff
+

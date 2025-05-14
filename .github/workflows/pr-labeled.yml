@@ -10,3 +10,4 @@ jobs:
   pyiron:
     uses: pyiron/actions/.github/workflows/pr-labeled.yml@actions-4.0.2
     secrets: inherit
+

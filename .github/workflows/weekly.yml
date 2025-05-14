@@ -10,3 +10,4 @@ jobs:
   codeql:
     uses: pyiron/actions/.github/workflows/codeql.yml@actions-4.0.2
     secrets: inherit
+

@@ -13,7 +13,7 @@ assignees: ''
 
 **Detailed Description**
 
-<!--Please explain how you would like to see pyiron_workflow enhanced, what feature(s) you are looking for, what specific problems this will solve.-->
+<!--Please explain how you would like to see pyiron_node_store enhanced, what feature(s) you are looking for, what specific problems this will solve.-->
 
 **Further Information, Files, and Links**
 
