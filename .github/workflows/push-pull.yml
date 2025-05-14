@@ -9,9 +9,8 @@ on:
 
 jobs:
   pyiron:
-    uses: pyiron/actions/.github/workflows/push-pull.yml@actions-4.0.2
-    secrets:
-       DEPENDABOT_WORKFLOW_TOKEN: ${{ secrets.DEPENDABOT_WORKFLOW_TOKEN }}
+    uses: pyiron-node-store/actions/.github/workflows/push-pull.yml@actions-4.0.2
+    secrets: inherit
     with:
       docs-env-files: .ci_support/environment.yml
       notebooks-env-files: .ci_support/environment.yml
