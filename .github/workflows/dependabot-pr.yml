@@ -6,6 +6,6 @@ on:
 
 jobs:
   pyiron:
-    uses: pyiron/actions/.github/workflows/dependabot-pr.yml@actions-4.0.2
+    uses: pyiron-node-store/actions/.github/workflows/dependabot-pr.yml@actions-4.0.2
     secrets: inherit
 

@@ -1,6 +1,7 @@
-from importlib.metadata import entry_points as _entry_points
 import sys as _sys
 import types as _types
+from importlib.metadata import entry_points as _entry_points
+
 from ._version import get_versions as _get_versions
 
 # might be very interesting to get tests at some point:
