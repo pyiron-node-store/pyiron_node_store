@@ -25,7 +25,7 @@ def _find_entry_points():
         if node.group.startswith(_MODULE_NAME):
             module = tuple(node.group.split(".") + [node.name])
             if module in registered_nodes:
-                warn(
+                print(
                     f"Name clash! Will overwrite {module} with currently registered "
                     f"node {registered_nodes[module]} with new node {node}!"
                 )

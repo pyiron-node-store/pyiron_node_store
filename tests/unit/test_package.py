@@ -1,7 +1,7 @@
 import unittest
 from importlib.metadata import entry_points as _entry_points
-import pkg_resources
 
+import pkg_resources
 
 ENTRY_POINTS = [
     {
