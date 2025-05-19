@@ -11,7 +11,7 @@ class MyTestCase(unittest.TestCase):
                 for key, value in pyiron_node_store._SUB_MODULES.items()
             },
             {
-                "nodes": ["math", "prod", "sum", "mathematics"],
+                "nodes": ["math", "mathematics", "prod", "sum"],
                 "mathematics": ["prod", "sum", "sum_b"],
                 "math": ["sum", "prod"],
                 "some": ["long"],
