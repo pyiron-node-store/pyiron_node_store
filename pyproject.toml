@@ -23,7 +23,7 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
 ]
 dependencies = [
-    "pyiron_workflow==0.12.3",
+    "pyiron_workflow==0.13.0",
 ]
 dynamic = [ "version",]
 authors = [
