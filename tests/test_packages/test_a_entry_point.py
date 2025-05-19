@@ -8,6 +8,7 @@ def process_pyiron_nodes_dict(pyiron_nodes_dict):
     for group in pyiron_nodes_dict:
         module = pyiron_nodes_dict[group]
         result[group] = [node for node in dir(module) if not node.startswith("_")]
+    return result
 
 
 class MyTestCase(unittest.TestCase):
