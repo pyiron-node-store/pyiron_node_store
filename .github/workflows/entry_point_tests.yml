@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  entry_point_matrix:
+  test_matrix:
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
@@ -56,3 +56,11 @@ jobs:
       timeout-minutes: 10
       run: |
         python -m unittest tests/test_packages/test_a_entry_point.py
+    - name: Install test_b
+      shell: bash -l {0}
+      run: pip install tests/test_packages/test_b
+    - name: Test_ab entry point
+      shell: bash -l {0}
+      timeout-minutes: 10
+      run: |
+        python -m unittest tests/test_packages/test_ab_entry_point.py

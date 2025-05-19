@@ -14,7 +14,11 @@ class MyTestCase(unittest.TestCase):
     def test_entry_point_keys(self):
         self.assertEqual(
             process_pyiron_nodes_dict(pyiron_node_store.get_pyiron_nodes_dict()),
-            {"nodes": []},
+            {
+                "nodes": ["math", "sum", "prod"],
+                "mathematics": ["sum", "sum_b", "prod"],
+                "some.long.package.path": ["sum"],
+            },
         )
 
 
