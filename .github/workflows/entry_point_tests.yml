@@ -64,3 +64,11 @@ jobs:
       timeout-minutes: 10
       run: |
         python -m unittest tests/test_packages/test_ab_entry_point.py
+    - name: Install test_c
+      shell: bash -l {0}
+      run: pip install tests/test_packages/test_c
+    - name: Test_abc entry point
+      shell: bash -l {0}
+      timeout-minutes: 10
+      run: |
+        python -m unittest tests/test_packages/test_abc_entry_point.py
