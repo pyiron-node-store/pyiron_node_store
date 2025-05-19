@@ -9,4 +9,4 @@ dependencies:
 - versioneer
 - coveralls
 - coverage
-- pyiron_workflow =0.12.3
+- pyiron_workflow =0.13.0
