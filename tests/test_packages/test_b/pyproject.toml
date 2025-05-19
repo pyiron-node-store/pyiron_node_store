@@ -1,0 +1,25 @@
+[build-system]
+requires = [
+    "setuptools",
+    "pyiron_workflow",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "test_b"
+description = "pyiron_node_store - test package."
+version = "0.0.1"
+dependencies = [
+    "pyiron_workflow",
+]
+
+[project.entry-points."pyiron_node_store"]  # registers to the pyiron_node_store.nodes namespace
+sum = "test_b.sum"  # the module sum, which will be available via pyiron_node_store.nodes.sum
+prod = "test_b.product"  # the module product, which will be available via pyiron_node_store.nodes.prod
+
+[project.entry-points."pyiron_node_store.mathematics"]  # registers to the pyiron_node_store.mathematics namespace
+sum_b = "test_b.sum:sum"  # the function sum, which will be available via pyiron_node_store.mathematics.sum_b
+prod = "test_b.product:product"  # the function product, which will be available via pyiron_node_store.mathematics.prod
+
+[project.entry-points."pyiron_node_store.some.long.package.path"]
+sum = 'test_b.sum'

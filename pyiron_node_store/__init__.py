@@ -21,7 +21,10 @@ _SUB_MODULES = {_DEFAULT_SUB_MODULE_NAME: nodes}
 
 def _find_entry_points():
     registered_nodes = {}
-    for node in _entry_points():
+    _ep = _entry_points()
+    if _ep.__class__.__name__ == "SelectableGroups":
+        _ep = [node for group in _ep.groups for node in _ep[group]]
+    for node in _ep:
         if node.group.startswith(_MODULE_NAME):
             module = tuple(node.group.split(".") + [node.name])
             if module in registered_nodes:
