@@ -33,7 +33,7 @@ class MyTestCase(unittest.TestCase):
         pkg_resources.working_set.by_key = self.by_key
 
     def test_something(self):
-        print([node.group for node in _entry_points()])
+        print(_entry_points())
         import pyiron_node_store as pns
 
         self.assertEqual(list(pns.get_pyiron_nodes_dict().keys()), ["nodes"])
