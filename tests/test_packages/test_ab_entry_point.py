@@ -16,9 +16,9 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(
             process_pyiron_nodes_dict(pyiron_node_store.get_pyiron_nodes_dict()),
             {
-                "nodes": ["math", "sum", "prod"],
-                "mathematics": ["sum", "sum_b", "prod"],
-                "some.long.package.path": ["sum"],
+                "nodes": ["math", "prod", "sum"],
+                "mathematics": ["prod", "sum", "sum_b"],
+                "some": {"long": {"package": {"path": ["sum"]}}},
             },
         )
 
