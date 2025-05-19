@@ -13,6 +13,9 @@ class MyTestCase(unittest.TestCase):
             {
                 "nodes": ["math", "prod", "sum"],
                 "mathematics": ["prod", "sum", "sum_b"],
+                "some": "long",
+                "some.long": "package",
+                "some.long.package": ["path"],
                 "some.long.package.path": ["sum"],
             },
         )
