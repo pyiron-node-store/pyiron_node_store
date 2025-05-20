@@ -1,6 +1,6 @@
 import sys as _sys
 import types as _types
-from importlib.metadata import entry_points as _entry_points
+import importlib as _importlib
 
 from ._version import get_versions as _get_versions
 
@@ -17,11 +17,12 @@ _DEFAULT_SUB_MODULE_NAME = "nodes"
 
 nodes = _types.ModuleType(_DEFAULT_SUB_MODULE_NAME)
 _SUB_MODULES = {_DEFAULT_SUB_MODULE_NAME: nodes}
+_ENTRY_POINTS = {}
 
 
 def _find_entry_points():
     registered_nodes = {}
-    _ep = _entry_points()
+    _ep = _importlib.metadata.entry_points()
     if _ep.__class__.__name__ == "SelectableGroups":
         _ep = [node for group in _ep.groups for node in _ep[group]]
     for node in _ep:
@@ -64,21 +65,33 @@ def _gen_sub_module(module_path_list):
     _SUB_MODULES[_full_name] = _mod
 
 
-def get_pyiron_nodes_dict():
-    result = {}
-    for path, module in _SUB_MODULES.items():
-        work = result
-        work_before = result
-        key = None
-        for key in path.split("."):
-            work_before = work
-            if key in work:
-                work = work[key]
+def _flatten_to_nested(flat_dict):
+    """
+    Converts a flat dictionary with tuples as keys into a nested dictionary.
+
+    Args:
+        flat_dict (dict): A dictionary where the keys are tuples of strings.
+                           e.g., {('some','path'): 'val1', ('some','other','path'):'val2'}
+
+    Returns:
+        dict: A nested dictionary reflecting the structure of the tuple keys.
+              e.g., {'some': {'path': 'val1', 'other':{'path': 'val2'}}}
+    """
+    nested_dict = {}
+    for keys, value in flat_dict.items():
+        current_level = nested_dict
+        for i, key in enumerate(keys):
+            if i == len(keys) - 1:
+                current_level[key] = value
             else:
-                work[key] = {}
-                work = work[key]
-        work_before[key] = module
-    return result
+                if key not in current_level:
+                    current_level[key] = {}
+                current_level = current_level[key]
+    return nested_dict
+
+
+def get_pyiron_nodes_dict():
+    return _flatten_to_nested(_ENTRY_POINTS)
 
 
 for _module_path_list, _entry_point in _find_entry_points().items():
@@ -86,3 +99,8 @@ for _module_path_list, _entry_point in _find_entry_points().items():
     if _mod_path not in _SUB_MODULES:
         _gen_sub_module(_module_path_list[1:-1])
     setattr(_SUB_MODULES[_mod_path], _mod_name, _entry_point.load())
+    _ENTRY_POINTS[_module_path_list] = {
+        "ep": _entry_point,
+        "file": _importlib.util.find_spec(_entry_point.value).origin,
+        "path_tuple": _module_path_list,
+    }
