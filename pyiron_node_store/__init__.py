@@ -1,6 +1,6 @@
+import importlib as _importlib
 import sys as _sys
 import types as _types
-import importlib as _importlib
 
 from ._version import get_versions as _get_versions
 
