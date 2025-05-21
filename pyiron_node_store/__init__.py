@@ -2,6 +2,7 @@ import importlib as _importlib
 import sys as _sys
 import types as _types
 
+from importlib.metadata import entry_points as _entry_points
 from ._version import get_versions as _get_versions
 
 # might be very interesting to get tests at some point:
@@ -22,7 +23,7 @@ _ENTRY_POINTS = {}
 
 def _find_entry_points():
     registered_nodes = {}
-    _ep = _importlib.metadata.entry_points()
+    _ep = _entry_points()
     if _ep.__class__.__name__ == "SelectableGroups":
         _ep = [node for group in _ep.groups for node in _ep[group]]
     for node in _ep:
