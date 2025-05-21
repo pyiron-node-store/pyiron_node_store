@@ -36,7 +36,7 @@ class MyTestCase(unittest.TestCase):
         print(_entry_points())
         import pyiron_node_store as pns
 
-        self.assertEqual(list(pns.get_pyiron_nodes_dict().keys()), ["nodes"])
+        self.assertEqual(list(pns.get_pyiron_nodes_dict()['pyiron_node_store'].keys()), ["nodes"])
 
 
 if __name__ == "__main__":
