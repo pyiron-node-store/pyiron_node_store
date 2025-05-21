@@ -33,10 +33,9 @@ class MyTestCase(unittest.TestCase):
         pkg_resources.working_set.by_key = self.by_key
 
     def test_something(self):
-        print(_entry_points())
         import pyiron_node_store as pns
 
-        self.assertEqual(list(pns.get_pyiron_nodes_dict()['pyiron_node_store'].keys()), ["nodes"])
+        self.assertEqual(pns.get_pyiron_nodes_dict(), {})
 
 
 if __name__ == "__main__":

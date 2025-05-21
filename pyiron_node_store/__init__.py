@@ -1,8 +1,8 @@
 import importlib as _importlib
 import sys as _sys
 import types as _types
-
 from importlib.metadata import entry_points as _entry_points
+
 from ._version import get_versions as _get_versions
 
 # might be very interesting to get tests at some point:
@@ -18,7 +18,7 @@ _DEFAULT_SUB_MODULE_NAME = "nodes"
 
 nodes = _types.ModuleType(_DEFAULT_SUB_MODULE_NAME)
 _SUB_MODULES = {_DEFAULT_SUB_MODULE_NAME: nodes}
-_ENTRY_POINTS = {}
+_ENTRY_POINTS: dict[dict] = {}
 
 
 def _find_entry_points():
